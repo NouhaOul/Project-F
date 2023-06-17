@@ -6,7 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Plat extends Model
+
 {
+    use HasFactory;
+    protected $table = 'plats';
+
+
+    protected $fillable = ['name', 'description', 'image_plats', 'price', 'category_id'];
 
     public function category()
     {

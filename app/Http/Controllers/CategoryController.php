@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Plat;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -12,8 +13,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all();
+        return view('addPlat', compact('categories'));
+               
     }
+    
 
     /**
      * Show the form for creating a new resource.

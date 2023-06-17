@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PlatController;
@@ -20,10 +21,29 @@ use App\Models\Plat;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/redirects',[HomeController::class,"index"]);
-Route::get('/redirects',[UsersController::class,"index"]);
-Route::get('/products',[PlatController::class,"index"])->name('products'); 
+Route::get('/redirects',[HomeController::class,"index"])->name('admin');
+Route::get('/redirects',[UsersController::class,"index"])->name('admin');
+Route::get('/products',[PlatController::class,"index"])->name('products');
+// Route::get('/products',[CategoryController::class,"index"])->name('products');
 Route::get('/create', [PlatController::class, 'create'])->name('addPlat');
+Route::get('/create', [CategoryController::class, 'index'])->name('addPlat');
+Route::post('/products', [PlatController::class, 'store'])->name('storePlat');
+
+// Route::get('/redirects', [HomeController::class, 'index'])->name('admin');
+// Route::get('/products', [PlatController::class, 'index'])->name('products');
+// Route::get('/create', [PlatController::class, 'create'])->name('addPlat');
+// Route::get('/create', [CategoryController::class, 'index'])->name('addPlat');
+
+// Route::post('/products', [PlatController::class, 'store']);
+
+
+// Route::get('/redirects', [HomeController::class, "index"])->name('admin');
+// Route::get('/products', [PlatController::class, "index"])->name('products');
+// Route::get('/create', [PlatController::class, 'create'])->name('addPlat');
+// Route::post('/products', [PlatController::class, 'store'])->name('storePlat');
+
+
+
 
 
 

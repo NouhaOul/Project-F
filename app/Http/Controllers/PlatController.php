@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Plat;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
 
 class PlatController extends Controller
 {
@@ -12,16 +15,22 @@ class PlatController extends Controller
      */
     public function index()
     {
-        $Plats = Plat::get();
-        return view('products',compact("Plats"));
+        $categories = Category::all();
+        $Plats = Plat::all();
+        return view('products', compact("Plats", "categories"));
+
     }
+
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        return view('addPlat');
+        
+        $categories = Category::all();
+        return view('addPlat', compact('categories'));
+
     }
 
     /**
@@ -30,6 +39,24 @@ class PlatController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string|max:1000',
+            // 'image_plat' => 'required',
+            'price' => 'required|numeric',
+            'category' => 'required|exists:categories,id',
+        ]);
+    
+        Plat::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'image_plats' => $request->image_plats,
+            'price' => $request->price,
+            'category_id' => $request->category,
+        ]);
+    
+        return redirect()->route('products')->with('success', 'La plat a été ajoutée.');
+
     }
 
     /**
