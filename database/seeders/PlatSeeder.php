@@ -2,20 +2,19 @@
 
 namespace Database\Seeders;
 
-use App\Models\Plat;
-use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Plat;
+use Database\Factories\PlatFactory;
+use App\Models\Category;
 
 class PlatSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
+    public function run()
     {
-        //
-        Plat::factory()
-        ->count(30)->create();
+        $categories = Category::all();
+
+        foreach ($categories as $category) {
+            PlatFactory::new(['category_id' => $category->id])->count(5)->create();
+        }
     }
 }
