@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PanierController;
 use App\Http\Controllers\PlatController;
 use App\Http\Controllers\UsersController;
 use App\Models\Plat;
@@ -42,7 +43,7 @@ Route::get('/products', [PlatController::class, 'index'])->name('products');
  
 
 
-
+Route::get('/Cart',[PanierController::class,"index"])->name('Cart');
 
 // Route::get('/redirects', [HomeController::class, 'index'])->name('admin');
 // Route::get('/products', [PlatController::class, 'index'])->name('products');
