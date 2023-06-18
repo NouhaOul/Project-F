@@ -176,21 +176,13 @@
               </table>
             </div>
             <!-- table container -->
-            <button id="add-category-btn" class="btn btn-primary btn-block text-uppercase mb-3">
-              Add new category
-            </button>
+            <a
+            id="add-category-btn"
+            href="{{ route("addCat")}}"
+              class="btn btn-primary btn-block text-uppercase mb-3">Add new category</a>
+            
 
 
-            <form action="{{route('products-cat')}}" method="POST" class="tm-edit-product-form">
-              @csrf
-
-              <div id="new-category-input" style="display: none;">
-                <input type="text" class="form-control" name="name" placeholder="Enter new category">
-                <button id="add-category-btn" class="btn btn-primary btn-block text-uppercase mb-3">
-                  Add 
-                </button>
-              </div> 
-            </form>
             
             
             
@@ -219,7 +211,7 @@
         });
       });
       </script>
-      <script src="{{ asset('js/catg.js') }}"></script>
+      {{-- <script src="{{ asset('js/catg.js') }}"></script> --}}
 
   </body>
 </html>

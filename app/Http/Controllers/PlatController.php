@@ -6,11 +6,15 @@ use App\Models\Category;
 use App\Models\Plat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Validator;
 
 
 class PlatController extends Controller
 {
+
+
+    
     /**
      * Display a listing of the resource.
      */
@@ -32,7 +36,7 @@ class PlatController extends Controller
             $plat = Plat::find($platId);
 
             // Perform the update operation on the plat
-            // Example: $plat->update(['name' => $request->input('name')]);
+            // $plat->update(['name' => $request->input('name')]);
 
             // Save the changes to the plat
             $plat->save();
