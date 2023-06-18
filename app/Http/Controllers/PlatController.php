@@ -22,6 +22,24 @@ class PlatController extends Controller
 
     }
 
+    public function updateSelectedPlats(Request $request)
+    {
+        $selectedPlats = $request->input('selected_plats', []);
+
+        // Handle the logic to update the selected plats
+        foreach ($selectedPlats as $platId) {
+            // Retrieve the plat from the database and perform the necessary update
+            $plat = Plat::find($platId);
+
+            // Perform the update operation on the plat
+            // Example: $plat->update(['name' => $request->input('name')]);
+
+            // Save the changes to the plat
+            $plat->save();
+        }
+
+        return redirect()->route('products')->with('success', 'Selected plats updated successfully.');
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -72,18 +90,31 @@ class PlatController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Plat $plat)
+    public function edit($id)
     {
         //
+        $plat = Plat::find($id);
+        $categories = Category::all();
+        return view('editPlat', compact('plat', 'categories'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Plat $plat)
+    public function update($id)
     {
         //
+        $plat = Plat::find($id);
+        // Perform the necessary update on the plat using the values from the request
+        // Example: $plat->name = $request->input('name');
+        // Update other fields as needed
+
+        // Save the changes to the plat
+        $plat->save();
+
+        return redirect()->route('products')->with('success', 'Plat updated successfully.');
     }
+    
 
     /**
      * Remove the specified resource from storage.
