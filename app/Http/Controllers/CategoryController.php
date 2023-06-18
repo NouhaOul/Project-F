@@ -35,6 +35,18 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'name' => 'required|string|max:255',
+
+
+        ]);
+    
+        $categories = new Category();
+        $categories->name = $request->name;
+
+        $categories->save();
+    
+        return redirect()->route('products')->with('success', 'La category a été ajoutée.');
     }
 
     /**

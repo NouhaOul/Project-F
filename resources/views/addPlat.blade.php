@@ -152,17 +152,17 @@
                       for="category"
                       >Category</label
                     >
-                    @foreach ($categories as $category)
-                        
+                    
                     <select
-                      class="custom-select tm-select-accounts"
-                      id="category"
-                      name="category_id">
+                    class="custom-select tm-select-accounts"
+                    id="category"
+                    name="category_id">
                     >
-                      <option selected>Select category</option>
+                    <option selected>Select category</option>
+                    @foreach ($categories as $category)
                       <option value="{{ $category->id }}">{{ $category->name }}</option>
+                      @endforeach 
                     </select>
-                    @endforeach 
                   </div>
                   <div class="row">
                       
