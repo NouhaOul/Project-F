@@ -27,7 +27,9 @@ Route::get('/products',[PlatController::class,"index"])->name('products');
 // Route::get('/products',[CategoryController::class,"index"])->name('products');
 Route::get('/create', [PlatController::class, 'create'])->name('addPlat');
 Route::get('/create', [CategoryController::class, 'index'])->name('addPlat');
-Route::post('/products', [PlatController::class, 'store'])->name('storePlat');
+Route::post('/products', [PlatController::class, 'store'])->name('products');
+Route::delete('/products/{id}', [PlatController::class, 'destroy'])->name('products.destroy');
+
 
 // Route::get('/redirects', [HomeController::class, 'index'])->name('admin');
 // Route::get('/products', [PlatController::class, 'index'])->name('products');

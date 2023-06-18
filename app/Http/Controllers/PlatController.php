@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Plat;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -29,6 +30,7 @@ class PlatController extends Controller
     {
         
         $categories = Category::all();
+        
         return view('addPlat', compact('categories'));
 
     }
@@ -42,21 +44,21 @@ class PlatController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:1000',
-            // 'image_plat' => 'required',
-            'price' => 'required|numeric',
-            'category' => 'required|exists:categories,id',
+            'image_plats' => 'required|string',
+            'price' => 'required|string',
+            'category_id' => 'required|exists:categories,id',
+
         ]);
     
-        Plat::create([
-            'name' => $request->name,
-            'description' => $request->description,
-            'image_plats' => $request->image_plats,
-            'price' => $request->price,
-            'category_id' => $request->category,
-        ]);
+        $Plats = new Plat();
+        $Plats->name = $request->name;
+        $Plats->description = $request->description;
+        $Plats->image_plats = $request->image_plats;
+        $Plats->price =  $request->price;
+        $Plats->category_id = $request->category_id;
+        $Plats->save();
     
         return redirect()->route('products')->with('success', 'La plat a été ajoutée.');
-
     }
 
     /**
@@ -86,8 +88,11 @@ class PlatController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Plat $plat)
+    public function destroy(Request $request)
     {
         //
+        $id = $request->id;
+        Plat::destroy($id);
+        return Redirect::route('products')->with('flash_message', 'plat deleted!');
     }
 }

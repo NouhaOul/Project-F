@@ -10,13 +10,13 @@
       href="https://fonts.googleapis.com/css?family=Roboto:400,700"
     />
     <!-- https://fonts.google.com/specimen/Roboto -->
-    <link rel="stylesheet" href="css/fontawesome.min.css" />
+    <link rel="stylesheet" href="{{ asset("/css/fontawesome.min.css") }}" />
     <!-- https://fontawesome.com/ -->
-    <link rel="stylesheet" href="jquery-ui-datepicker/jquery-ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="{{ asset("/jquery-ui-datepicker/jquery-ui.min.css") }}" type="text/css" />
     <!-- http://api.jqueryui.com/datepicker/ -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="{{ asset("/css/bootstrap.min.css") }}" />
     <!-- https://getbootstrap.com/ -->
-    <link rel="stylesheet" href="css/templatemo-style.css">
+    <link rel="stylesheet" href="{{ asset("/css/templatemo-style.css") }}">
     <!--
 	Product Admin CSS Template
 	https://templatemo.com/tm-524-product-admin
@@ -26,7 +26,7 @@
   <body>
     <nav class="navbar navbar-expand-xl">
       <div class="container h-100">
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="{{ route("admin") }}">
           <h1 class="tm-site-title mb-0">Product Admin</h1>
         </a>
         <button
@@ -44,7 +44,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mx-auto h-100">
             <li class="nav-item">
-              <a class="nav-link" href="{{route('admin')}}">
+              <a class="nav-link" href="{{ url("index.html") }}">
                 <i class="fas fa-tachometer-alt"></i> Dashboard
                 <span class="sr-only">(current)</span>
               </a>
@@ -52,7 +52,7 @@
             <li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
-                href="#"
+                href="{{ url("#") }}"
                 id="navbarDropdown"
                 role="button"
                 data-toggle="dropdown"
@@ -63,26 +63,26 @@
                 <span> Reports <i class="fas fa-angle-down"></i> </span>
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Daily Report</a>
-                <a class="dropdown-item" href="#">Weekly Report</a>
-                <a class="dropdown-item" href="#">Yearly Report</a>
+                <a class="dropdown-item" href="{{ url("#") }}">Daily Report</a>
+                <a class="dropdown-item" href="{{ url("#") }}">Weekly Report</a>
+                <a class="dropdown-item" href="{{ url("#") }}">Yearly Report</a>
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="{{ route("products")}}">
+              <a class="nav-link active" href="{{ url("products.html") }}">
                 <i class="fas fa-shopping-cart"></i> Products
               </a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="accounts.html">
+              <a class="nav-link" href="{{ url("accounts.html") }}">
                 <i class="far fa-user"></i> Accounts
               </a>
             </li>
             <li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
-                href="#"
+                href="{{ url("#") }}"
                 id="navbarDropdown"
                 role="button"
                 data-toggle="dropdown"
@@ -93,15 +93,15 @@
                 <span> Settings <i class="fas fa-angle-down"></i> </span>
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Profile</a>
-                <a class="dropdown-item" href="#">Billing</a>
-                <a class="dropdown-item" href="#">Customize</a>
+                <a class="dropdown-item" href="{{ url("#") }}">Profile</a>
+                <a class="dropdown-item" href="{{ url("#") }}">Billing</a>
+                <a class="dropdown-item" href="{{ url("#") }}">Customize</a>
               </div>
             </li>
           </ul>
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link d-block" href="login.html">
+              <a class="nav-link d-block" href="{{ url("login.html") }}">
                 Admin, <b>Logout</b>
               </a>
             </li>
@@ -120,51 +120,89 @@
             </div>
             <div class="row tm-edit-product-row">
               <div class="col-xl-6 col-lg-6 col-md-12">
-                <form action="{{ route('storePlat') }}" class="tm-edit-product-form" method="POST" enctype="multipart/form-data">
-                  @csrf
+            <form action="{{route('products')}}" method="POST" class="tm-edit-product-form">
+              @csrf
                   <div class="form-group mb-3">
-                    <label for="name">Plat Name</label>
-                    <input id="name" name="name" type="text" class="form-control validate" required />
+                    <label
+                      for="name"
+                      >Product Name
+                    </label>
+                    <input
+                      id="name"
+                      name="name"
+                      type="text"
+                      class="form-control validate"
+                      required
+                    />
                   </div>
                   <div class="form-group mb-3">
-                    <label for="description">Description</label>
-                    <textarea class="form-control validate" name="description" rows="3" required></textarea>
+                    <label
+                      for="description"
+                      >Description</label
+                    >
+                    <textarea
+                      class="form-control validate"
+                      name="description"
+                      rows="3"
+                      required
+                    ></textarea>
                   </div>
                   <div class="form-group mb-3">
-                    <label for="category">Category</label>
-                    <select class="custom-select tm-select-accounts" id="category" >
-                      <option value="" selected>Select category</option>
-                      @foreach ($categories as $category)
+                    <label
+                      for="category"
+                      >Category</label
+                    >
+                    @foreach ($categories as $category)
+                        
+                    <select
+                      class="custom-select tm-select-accounts"
+                      id="category"
+                      name="category_id">
+                    >
+                      <option selected>Select category</option>
                       <option value="{{ $category->id }}">{{ $category->name }}</option>
-                      @endforeach
                     </select>
+                    @endforeach 
                   </div>
                   <div class="row">
-                    <div class="form-group mb-3 col-xs-12 col-sm-6">
-                      <label for="price">Price</label>
-                      <input id="price" name="price" type="number" step="0.01" class="form-control validate" data-large-mode="true" />
-                    </div>
+                      
+                        <div class="form-group mb-3 col-xs-12 col-sm-6">
+                          <label
+                            for="stock"
+                            >Price
+                          </label>
+                          <input
+                            id="stock"
+                            name="price"
+                            type="text"
+                            class="form-control validate"
+                            required
+                          />
+                        </div>
                   </div>
-                  <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
-                    <div class="tm-product-img-dummy mx-auto">
-                      <i class="fas fa-cloud-upload-alt tm-upload-icon" onclick="document.getElementById('fileInput').click();"></i>
-                    </div>
-                    <div class="custom-file mt-3 mb-3">
-                      <input id="fileInput" type="file" name="image_plat" style="display:none;" />
-                      <input
-                        type="button"
-                        class="btn btn-primary btn-block mx-auto"
-                        value="UPLOAD PRODUCT IMAGE"
-                        onclick="document.getElementById('fileInput').click();"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-12">
-                    <button type="submit" class="btn btn-primary btn-block text-uppercase">Add Product Now</button>
-                  </div>
-                </form>
-                
-                
+                  
+              </div>
+              {{-- <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
+                <div class="tm-product-img-dummy mx-auto">
+                  <i
+                    class="fas fa-cloud-upload-alt tm-upload-icon"
+                    onclick="document.getElementById('fileInput').click();"
+                  ></i>
+                </div> --}}
+                 <div class="custom-file mt-3 mb-3">
+                  <input id="fileInput" type="file" name="image_plats" style="display:none;" />
+                  <input
+                    type="button"
+                    class="btn btn-primary btn-block mx-auto"
+                    value="UPLOAD PRODUCT IMAGE"
+                    onclick="document.getElementById('fileInput').click();"
+                  />
+                </div> 
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn btn-primary btn-block text-uppercase">Add Product Now</button>
+              </div>
+            </form>
             </div>
           </div>
         </div>
@@ -180,11 +218,11 @@
         </div>
     </footer> 
 
-    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="{{ asset("/js/jquery-3.3.1.min.js") }}"></script>
     <!-- https://jquery.com/download/ -->
-    <script src="jquery-ui-datepicker/jquery-ui.min.js"></script>
+    <script src="{{ asset("/jquery-ui-datepicker/jquery-ui.min.js") }}"></script>
     <!-- https://jqueryui.com/download/ -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="{{ asset("/js/bootstrap.min.js") }}"></script>
     <!-- https://getbootstrap.com/ -->
     <script>
       $(function() {

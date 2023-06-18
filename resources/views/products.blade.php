@@ -130,9 +130,11 @@
                             <td>{{$plat->image_plats}}</td>
                             <td>{{$plat->price}}</td>
                             <td>
-                            <a href="#" class="tm-product-delete-link">
-                                <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                            </a>
+                              <form action="{{ route('products.destroy', $plat->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                            </form>
                             </td>
                         </tr>
                   @endforeach
@@ -161,6 +163,7 @@
                     <td class="text-center">
                       <a href="#" class="tm-product-delete-link">
                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                        
                       </a>
                     </td>
                   </tr>
