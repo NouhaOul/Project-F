@@ -22,6 +22,18 @@ use App\Models\Plat;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
+
+Route::delete('/redirects', [UsersController::class, 'destroy'])->name('profile.admin');
 Route::get('/redirects',[HomeController::class,"index"])->name('admin');
 Route::get('/redirects',[UsersController::class,"index"])->name('admin');
 Route::get('/products',[PlatController::class,"index"])->name('products');
@@ -63,14 +75,3 @@ Route::get('/Cart',[PanierController::class,"index"])->name('Cart');
 
 
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});
-
-Route::delete('/redirects', [UsersController::class, 'destroy'])->name('profile.admin');

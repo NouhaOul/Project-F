@@ -213,7 +213,7 @@
                                     <th scope="col">prenom</th>
                                     <th scope="col">Tele</th>
                                     <th scope="col">Adress</th>
-                                    <th scope="col">Email</th>
+                                    <th scope="col">IMAGE</th>
                                     <th scope="col">Role</th>
                                     <th>Action</th>
                                 </tr>
