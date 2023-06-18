@@ -101,13 +101,18 @@ class PlatController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update($id)
+    public function update(Request $request, $id)
     {
         //
         $plat = Plat::find($id);
         // Perform the necessary update on the plat using the values from the request
         // Example: $plat->name = $request->input('name');
         // Update other fields as needed
+        $plat->name = $request->input('name');
+        $plat->description = $request->input('description');
+        $plat->image_plats = $request->input('image_plats');
+        $plat->price = $request->input('price');
+        $plat->category_id = $request->input('category_id');
 
         // Save the changes to the plat
         $plat->save();
