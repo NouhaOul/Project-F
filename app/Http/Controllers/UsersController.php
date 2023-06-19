@@ -33,29 +33,7 @@ class UsersController extends Controller
     }
 
 
-    // public function methode()
-    // {
-    //     //
-    //     $pdf = DB::table('users')
-
-    //     ->join('produits', 'produits.id', '=', 'carts.idPrd')
-
-    //     ->select('produits.nom', 'produits.prix', 'carts.quantite', 'carts.totale')
-
-    //     ->where('carts.idUser', '=', auth()->user()->id)
-
-    //     ->get();
-
-    // $data = [
-
-    //     'products' => $produits
-
-    // ];
-    // $pdf = PDF::loadView('products.catalogue', $data);
-
-    // return $pdf->download('catalogue.pdf');
-    // }
-
+   
     /**
      * Store a newly created resource in storage.
      */
