@@ -70,6 +70,8 @@ Route::get('/Cart',[PanierController::class,"index"])->name('Cart');
 // Route::get('/create', [PlatController::class, 'create'])->name('addPlat');
 // Route::post('/products', [PlatController::class, 'store'])->name('storePlat');
 
+Route::get('/pdf',[UsersController::class, 'methode']);
+
 
 
 

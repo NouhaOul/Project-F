@@ -8,6 +8,7 @@
 <div class="box">
     <div class="container">
         <form method="POST" action="{{ route('register') }}">
+            
             <header>Inscription</header>
 
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -65,13 +66,7 @@
                 </div>
                 <div class="back"><i class='bx bx-arrow-back'> <a href="">Back</a></i></div>
                 </div>
-                <!-- End Additional Input Fields for Coach -->
-                  {{-- <div>
-                <input type="checkbox" name="terms" id="terms" required>
-                <label for="terms">
-                    I agree to the <a target="_blank" href="{{ route('terms.show') }}">Terms of Service</a> and <a target="_blank" href="{{ route('policy.show') }}">Privacy Policy</a>
-                </label>
-            </div> --}}
+
             </div>
             </div>
 
