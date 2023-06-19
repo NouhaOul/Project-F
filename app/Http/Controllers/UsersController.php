@@ -33,29 +33,33 @@ class UsersController extends Controller
     }
 
 
-    // public function methode()
-    // {
-    //     //
-    //     $pdf = DB::table('users')
+// <<<<<<< HEAD
+//     // public function methode()
+//     // {
+//     //     //
+//     //     $pdf = DB::table('users')
 
-    //     ->join('produits', 'produits.id', '=', 'carts.idPrd')
+//     //     ->join('produits', 'produits.id', '=', 'carts.idPrd')
 
-    //     ->select('produits.nom', 'produits.prix', 'carts.quantite', 'carts.totale')
+//     //     ->select('produits.nom', 'produits.prix', 'carts.quantite', 'carts.totale')
 
-    //     ->where('carts.idUser', '=', auth()->user()->id)
+//     //     ->where('carts.idUser', '=', auth()->user()->id)
 
-    //     ->get();
+//     //     ->get();
 
-    // $data = [
+//     // $data = [
 
-    //     'products' => $produits
+//     //     'products' => $produits
 
-    // ];
-    // $pdf = PDF::loadView('products.catalogue', $data);
+//     // ];
+//     // $pdf = PDF::loadView('products.catalogue', $data);
 
-    // return $pdf->download('catalogue.pdf');
-    // }
+//     // return $pdf->download('catalogue.pdf');
+//     // }
 
+// =======
+   
+// >>>>>>> 314bb1f6aed6b79d554a22f0eea5d685b411fb8c
     /**
      * Store a newly created resource in storage.
      */
